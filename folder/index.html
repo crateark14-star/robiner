@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$ROBINA — The Woodland Outlaw of Solana</title>
+  <meta name="description" content="Robina is a cute, playful young female woodland outlaw inspired by Robin Hood and Solana meme culture. Join the forest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #0d2818;
+      --green-mid: #1a4d2e;
+      --green-light: #2d6a4f;
+      --green-soft: #40916c;
+      --green-pale: #95d5b2;
+      --solana-purple: #9945ff;
+      --solana-green: #14f195;
+      --gold: #f4d35e;
+      --cream: #f8f4e8;
+      --white: #ffffff;
+      --text: #e8f5e9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--green-dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Subtle leaf pattern background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(45, 106, 79, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(153, 69, 255, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HERO ===== */
+    header {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .character-img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--green-soft);
+      box-shadow: 0 0 40px rgba(20, 241, 149, 0.25), 0 10px 30px rgba(0,0,0,0.4);
+      margin-bottom: 24px;
+      background: var(--green-mid);
+    }
+
+    /* Placeholder when no image is set */
+    .character-placeholder {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 4px solid var(--green-soft);
+      box-shadow: 0 0 40px rgba(20, 241, 149, 0.25);
+      margin: 0 auto 24px;
+      background: linear-gradient(145deg, var(--green-mid), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 20px rgba(20, 241, 149, 0.3);
+    }
+
+    .tagline {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.25rem;
+      color: var(--green-pale);
+      margin-bottom: 12px;
+    }
+
+    .ticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(20, 241, 149, 0.12);
+      border: 1px solid rgba(20, 241, 149, 0.35);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--solana-green);
+      margin-top: 8px;
+    }
+
+    /* ===== CA SECTION ===== */
+    .ca-section {
+      background: linear-gradient(145deg, rgba(26, 77, 46, 0.8), rgba(13, 40, 24, 0.9));
+      border: 1px solid rgba(64, 145, 108, 0.4);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin: 40px 0;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .ca-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      color: var(--green-pale);
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .ca-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ca-address {
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      background: rgba(0,0,0,0.35);
+      padding: 12px 18px;
+      border-radius: 12px;
+      color: var(--cream);
+      word-break: break-all;
+      max-width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .copy-btn {
+      background: linear-gradient(135deg, var(--solana-green), #0ea5e9);
+      color: #0d2818;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(20, 241, 149, 0.4);
+    }
+
+    .copy-btn.copied {
+      background: var(--green-soft);
+      color: white;
+    }
+
+    /* ===== SOCIAL LINKS ===== */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 36px 0 50px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .social-btn.x {
+      background: #000;
+      color: white;
+      border-color: #333;
+    }
+    .social-btn.x:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+
+    .social-btn.tg {
+      background: #229ED9;
+      color: white;
+    }
+    .social-btn.tg:hover { box-shadow: 0 6px 20px rgba(34, 158, 217, 0.45); }
+
+    .social-btn.dex {
+      background: linear-gradient(135deg, var(--solana-purple), #14f195);
+      color: white;
+    }
+    .social-btn.dex:hover { box-shadow: 0 6px 20px rgba(153, 69, 255, 0.4); }
+
+    /* ===== LORE / ABOUT ===== */
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .lore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .lore-card {
+      background: rgba(26, 77, 46, 0.55);
+      border: 1px solid rgba(64, 145, 108, 0.3);
+      border-radius: 16px;
+      padding: 22px 20px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .lore-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--green-soft);
+    }
+
+    .lore-card .scene {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      color: var(--solana-green);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .lore-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .lore-card p {
+      font-size: 0.92rem;
+      color: var(--green-pale);
+      opacity: 0.9;
+    }
+
+    /* ===== ABOUT TEXT ===== */
+    .about-text {
+      background: rgba(26, 77, 46, 0.4);
+      border-radius: 16px;
+      padding: 28px 26px;
+      border: 1px solid rgba(64, 145, 108, 0.25);
+      font-size: 1.05rem;
+      color: var(--green-pale);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 40px 0 50px;
+      font-size: 0.9rem;
+      color: var(--green-soft);
+      opacity: 0.8;
+    }
+
+    footer a {
+      color: var(--solana-green);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .character-img, .character-placeholder {
+        width: 180px;
+        height: 180px;
+      }
+      .ca-address {
+        font-size: 0.82rem;
+      }
+      .social-btn {
+        padding: 10px 16px;
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== HERO ===== -->
+    <header>
+      <img src="image1.png" alt="Robina" class="character-img" />
+
+      <h1>Robina</h1>
+      <p class="tagline">Cute woodland outlaw of Solana</p>
+      <div class="ticker">$ROBINA × $SOL</div>
+    </header>
+
+    <!-- ===== CONTRACT ADDRESS ===== -->
+    <section class="ca-section">
+      <h2>Contract Address</h2>
+      <div class="ca-box">
+        <div class="ca-address" id="ca">[ CA will be inserted here ]</div>
+        <button class="copy-btn" onclick="copyCA()">Copy</button>
+      </div>
+    </section>
+
+    <!-- ===== SOCIALS ===== -->
+    <div class="socials">
+      <!-- Replace the href="#" with your real links -->
+      <a href="#" class="social-btn x" target="_blank" rel="noopener">𝕏 Twitter / X</a>
+      <a href="#" class="social-btn tg" target="_blank" rel="noopener">✈ Telegram</a>
+      <a href="#" class="social-btn dex" target="_blank" rel="noopener">📊 DEX Screener</a>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section">
+      <h2>About Robina</h2>
+      <div class="about-text">
+        Robina is a cute, playful young female woodland outlaw inspired by the classic Robin Hood archetype and modern Solana meme culture. 
+        She steals from the boring and gives to the degens. The forest is calling — will you answer?
+      </div>
+    </section>
+
+    <!-- ===== LORE / SCENES ===== -->
+    <section class="section">
+      <h2>The Lore</h2>
+      <div class="lore-grid">
+        <div class="lore-card">
+          <div class="scene">Scene 1</div>
+          <h3>The Awakening</h3>
+          <p>Deep in the Solana woods, a young outlaw opens her eyes. The trees whisper of a new token… and a new legend.</p>
+        </div>
+        <div class="lore-card">
+          <div class="scene">Scene 2</div>
+          <h3>The Arrow</h3>
+          <p>With a single shot of pure degen energy, Robina marks her target. The chart never stood a chance.</p>
+        </div>
+        <div class="lore-card">
+          <div class="scene">Scene 3</div>
+          <h3>The Forest Rises</h3>
+          <p>Animals, degens, and holders gather under the green canopy. Community is the real power.</p>
+        </div>
+        <div class="lore-card">
+          <div class="scene">Scene 4</div>
+          <h3>Robin’s Gift</h3>
+          <p>She doesn’t keep the bags for herself. Every win is shared with the pack.</p>
+        </div>
+        <div class="lore-card">
+          <div class="scene">Scene 5</div>
+          <h3>Legend Status</h3>
+          <p>From meme to myth. Robina becomes the face of the woodland revolution on Solana.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <p>Built for the forest • Powered by Solana</p>
+      <p style="margin-top:8px; font-size:0.8rem;">Not financial advice. DYOR. This is a meme coin.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyCA() {
+      const ca = document.getElementById('ca').innerText;
+      navigator.clipboard.writeText(ca).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
